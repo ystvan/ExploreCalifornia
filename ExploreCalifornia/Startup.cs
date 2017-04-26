@@ -28,10 +28,24 @@ namespace ExploreCalifornia
                 app.UseDeveloperExceptionPage();
             }
 
+            //2 input parameter NEXT middleware function
+            app.Use(async (context, next) =>
+            {
+                //if evalueates false, will skip and go to *
+                if (context.Request.Path.Value.StartsWith("/hello"))
+                {
+                    await context.Response.WriteAsync("Hello from Cali!");
+                }
+                // * the next()
+                await next();
+            });
+            //so far this is the only one single piece of middleware registered, and that is the app.Run method
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");
             });
+
+           
         }
     }
 }
