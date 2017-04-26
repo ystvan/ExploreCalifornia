@@ -13,6 +13,21 @@ namespace ExploreCalifornia
 {
     public class Startup
     {
+        private readonly IConfiguration configuration;
+
+        public Startup(IHostingEnvironment env)
+        {
+            configuration = new ConfigurationBuilder()
+                                    .AddEnvironmentVariables()
+                                    .AddJsonFile(env.ContentRootPath + "/config.json")
+
+                                    //the second parameter boolean set to true tells that this configuration file is OPTIONAL!
+                                    //This parameter tells the configuration API that if the file exists at run time, then yeah, 
+                                    //sure, go ahead and read it in. 
+                                    //Otherwise if the file is missing, just keep going with the configuration that you've already got.
+                                    .AddJsonFile(env.ContentRootPath + "/config.development.json", true)
+                                    .Build();
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -34,7 +49,10 @@ namespace ExploreCalifornia
                  * particularly expensive to create and is not specific to any particular user or request. 
                  
              */
-            services.AddTransient<FeatureToggles>();
+            services.AddTransient<FeatureToggles>(x => new FeatureToggles
+            {
+                EnableDeveloperExceptions = configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions")
+            });
 
 
         }
@@ -51,19 +69,10 @@ namespace ExploreCalifornia
 
             app.UseExceptionHandler("/error.html");
 
-            var configuration = new ConfigurationBuilder()
-                .AddEnvironmentVariables()
-                .AddJsonFile(env.ContentRootPath + "/config.json")
-
-                //the second parameter boolean set to true tells that this configuration file is OPTIONAL!
-                //This parameter tells the configuration API that if the file exists at run time, then yeah, 
-                //sure, go ahead and read it in. 
-                //Otherwise if the file is missing, just keep going with the configuration that you've already got.
-                .AddJsonFile(env.ContentRootPath + "/config.development.json", true)
-                .Build();
+            
 
             //if (configuration["EnableDeveloperExceptions"] == "True")
-            //if (configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions"))
+            
             if(features.EnableDeveloperExceptions)
             {
                 app.UseDeveloperExceptionPage();
