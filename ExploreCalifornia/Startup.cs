@@ -17,10 +17,35 @@ namespace ExploreCalifornia
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            /*
+             * Dependency Injection options:
+             *  TRANSIENT: 
+                 *  AddTransient method will have a transient or the shortest lifespan, 
+                 *  as ASP.NET Core will create a new instance every time one is requested. 
+             *  SCOPED: 
+                 *  the AddScoped method, it generally means that ASP.NET Core will only 
+                 *  create one instance of that type for each web request. Sharing state between different
+                 *  components components throughout the same request without worrying about another user's
+                 *  request gaining access to that same data.
+             *  SINGLETON:
+                 * the AddSingleton method, this method will only create one instance of each type for 
+                 * the entire lifetime of the application, which is helpful in cases when you have some 
+                 * common data that you want to share across all users or when you have a type that's 
+                 * particularly expensive to create and is not specific to any particular user or request. 
+                 
+             */
+            services.AddTransient<FeatureToggles>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(
+            IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory,
+            FeatureToggles features
+            )
         {
             loggerFactory.AddConsole();
 
@@ -38,7 +63,8 @@ namespace ExploreCalifornia
                 .Build();
 
             //if (configuration["EnableDeveloperExceptions"] == "True")
-            if (configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions"))
+            //if (configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions"))
+            if(features.EnableDeveloperExceptions)
             {
                 app.UseDeveloperExceptionPage();
             }
