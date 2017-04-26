@@ -8,12 +8,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExploreCalifornia.Controllers
 {
-    public class HomeController : Controller
+    public class BlogController : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return new ContentResult {Content = "Hello from home!"};
+            return new ContentResult {Content = "Blog posts"};
+        }
+
+        public IActionResult Post(int? id)
+        {
+            if (id == null)
+                return new ContentResult {Content = "null"};
+            else
+                return new ContentResult {Content = id.ToString()};
         }
     }
 }
