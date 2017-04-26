@@ -104,6 +104,11 @@ namespace ExploreCalifornia
                 await next();
             });
 
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id}");
+            });
+
             //rendering any static files content it can be found under the 'wwwroot' folder
             app.UseFileServer();
             
