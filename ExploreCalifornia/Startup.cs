@@ -44,9 +44,11 @@ namespace ExploreCalifornia
             {
                 await context.Response.WriteAsync("Hello World!");
             });
-
-            app.UseFileServer();
             */
+
+            //rendering any static files content it can be found under the 'wwwroot' folder
+            app.UseFileServer();
+            
         }
     }
 }
