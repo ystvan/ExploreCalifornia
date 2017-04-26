@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -23,7 +24,14 @@ namespace ExploreCalifornia
         {
             loggerFactory.AddConsole();
 
-            if (env.IsDevelopment())
+            app.UseExceptionHandler("/error.html");
+
+            var configuration = new ConfigurationBuilder()
+                .AddEnvironmentVariables()
+                .Build();
+
+            //if (configuration["EnableDeveloperExceptions"] == "True")
+            if (configuration.GetValue<bool>("EnableDeveloperExceptions"))
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -45,6 +53,13 @@ namespace ExploreCalifornia
                 await context.Response.WriteAsync("Hello World!");
             });
             */
+
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path.Value.Contains("invalid"))
+                    throw new Exception("ERROR");
+                await next();
+            });
 
             //rendering any static files content it can be found under the 'wwwroot' folder
             app.UseFileServer();
