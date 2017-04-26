@@ -54,6 +54,8 @@ namespace ExploreCalifornia
                 EnableDeveloperExceptions = configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions")
             });
 
+            services.AddMvcCore();
+
 
         }
 
