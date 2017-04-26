@@ -28,13 +28,21 @@ namespace ExploreCalifornia
 
             var configuration = new ConfigurationBuilder()
                 .AddEnvironmentVariables()
+                .AddJsonFile(env.ContentRootPath + "/config.json")
+
+                //the second parameter boolean set to true tells that this configuration file is OPTIONAL!
+                //This parameter tells the configuration API that if the file exists at run time, then yeah, 
+                //sure, go ahead and read it in. 
+                //Otherwise if the file is missing, just keep going with the configuration that you've already got.
+                .AddJsonFile(env.ContentRootPath + "/config.development.json", true)
                 .Build();
 
             //if (configuration["EnableDeveloperExceptions"] == "True")
-            if (configuration.GetValue<bool>("EnableDeveloperExceptions"))
+            if (configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions"))
             {
                 app.UseDeveloperExceptionPage();
             }
+
             /*
             //2 input parameter NEXT middleware function
             app.Use(async (context, next) =>
