@@ -27,7 +27,7 @@ namespace ExploreCalifornia
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            /*
             //2 input parameter NEXT middleware function
             app.Use(async (context, next) =>
             {
@@ -45,7 +45,8 @@ namespace ExploreCalifornia
                 await context.Response.WriteAsync("Hello World!");
             });
 
-           
+            app.UseFileServer();
+            */
         }
     }
 }
