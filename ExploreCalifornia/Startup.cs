@@ -54,6 +54,9 @@ namespace ExploreCalifornia
                 EnableDeveloperExceptions = configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions")
             });
 
+            //registering service
+            services.AddMvcCore();
+
 
         }
 
@@ -102,6 +105,11 @@ namespace ExploreCalifornia
                 if (context.Request.Path.Value.Contains("invalid"))
                     throw new Exception("ERROR");
                 await next();
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id}");
             });
 
             //rendering any static files content it can be found under the 'wwwroot' folder
