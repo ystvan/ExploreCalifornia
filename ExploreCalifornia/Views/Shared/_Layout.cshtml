@@ -62,8 +62,15 @@
             </nav>
         </header>
         <section id="actionCall">
-            <h1>Explore our world your way</h1>
-            <a href="/tours.htm" title="Find your tour!"><h2>Find your tour</h2></a>
+            @if (IsSectionDefined("header"))
+            {
+                @RenderSection("header", false)
+            }
+            else
+            {
+                <h1>Explore our world your way</h1>
+            }
+
         </section>
         <div id="contentWrapper">
             <section id="mainContent">
