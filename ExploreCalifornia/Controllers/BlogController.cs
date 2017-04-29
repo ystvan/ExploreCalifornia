@@ -25,6 +25,15 @@ namespace ExploreCalifornia.Controllers
             //{
             //    Content = string.Format($"Year: {year};\nMonth: {month};\nKey: {key}")
             //};
+
+            // ViewBag property: This property is a dynamic object that is accessible both on the controller and the view.
+
+            ViewBag.Title = "My blog post";
+            ViewBag.Posted = DateTime.Now;
+            ViewBag.Author = "ystvan";
+            ViewBag.Body = "This is a great post. innit?";
+
+
             return View();
         }
     }
