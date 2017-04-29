@@ -19,7 +19,7 @@ namespace ExploreCalifornia.Controllers
             {
                 new Post
                 {
-                    Title = "My blog post",
+                    Title = "My brand new blog post",
                     Posted = DateTime.Now,
                     Author = "ystvan",
                     Body = "Another awesome story"
