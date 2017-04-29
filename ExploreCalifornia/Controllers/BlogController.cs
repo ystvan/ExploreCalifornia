@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ExploreCalifornia.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -28,13 +29,21 @@ namespace ExploreCalifornia.Controllers
 
             // ViewBag property: This property is a dynamic object that is accessible both on the controller and the view.
 
-            ViewBag.Title = "My blog post";
-            ViewBag.Posted = DateTime.Now;
-            ViewBag.Author = "ystvan";
-            ViewBag.Body = "This is a great post. innit?";
+            //ViewBag.Title = "My blog post";
+            //ViewBag.Posted = DateTime.Now;
+            //ViewBag.Author = "ystvan";
+            //ViewBag.Body = "This is a great post. innit?";
 
+            var post = new Post
+            {
+                Title = "My blog post",
+                Posted = DateTime.Now,
+                Author = "ystvan",
+                Body = "Another awesome story"
+            };
 
-            return View();
+            //passing it as a parameter
+            return View(post);
         }
     }
 }
