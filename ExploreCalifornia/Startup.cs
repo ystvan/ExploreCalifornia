@@ -34,7 +34,9 @@ namespace ExploreCalifornia
         public void ConfigureServices(IServiceCollection services)
         {
             //registering services
+            services.AddTransient<SpecialsDataContext>();
             services.AddTransient<FormattingService>();
+            
             /*
              * Dependency Injection options:
              *  TRANSIENT: 

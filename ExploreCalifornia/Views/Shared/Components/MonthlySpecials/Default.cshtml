@@ -1,4 +1,6 @@
-﻿<h1>Monthly Specials</h1>
+﻿@model IEnumerable<ExploreCalifornia.Models.Special>
+
+@*<h1>Monthly Specials</h1>
 <h2 class="top"><img src="/images/calm_bug.gif" alt="California Calm" width="75" height="75">California Calm</h2>
 <p>
     Day Spa Package <br>
@@ -18,4 +20,16 @@
 <p>
     Tapas &amp; Groves <br>
     <a href="/tours/tour_detail_taste.htm">$150</a>
-</p>
+</p>*@
+
+@foreach (var special in Model)
+{
+    <h2 class="top">
+        <img src="~/images/@(special.Key)_bug.gif" alt="@special.Name" width="75" height="75">
+        @special.Name
+    </h2>
+    <p>
+        @special.Type <br />
+        <a href="~/tours/@(special.Key).htm">$@special.Price</a>
+    </p>
+}
