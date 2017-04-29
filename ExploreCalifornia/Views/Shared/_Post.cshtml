@@ -1,0 +1,16 @@
+﻿
+@*//The first parameter is the Type that should be injected, and the second parameter is the
+    name of the Property that we want MVC to create for us dynamically. *@
+
+@inject ExploreCalifornia.Models.FormattingService Format
+@model ExploreCalifornia.Models.Post
+
+<article class="blog-post">
+    <h1>@Model.Title</h1>
+    <div class="details">
+        Posted <span>@Format.AsReadableDate(Model.Posted)</span> by <span>@Model.Author</span>
+    </div>
+    <div class="content">
+        @Model.Body
+    </div>
+</article>
