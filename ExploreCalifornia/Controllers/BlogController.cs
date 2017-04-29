@@ -15,8 +15,33 @@ namespace ExploreCalifornia.Controllers
         [Route("")]
         public IActionResult Index()
         {
+            var posts = new[]
+            {
+                new Post
+                {
+                    Title = "My blog post",
+                    Posted = DateTime.Now,
+                    Author = "ystvan",
+                    Body = "Another awesome story"
+                },
+                new Post
+                {
+                    Title = "My second blog post",
+                    Posted = DateTime.Now,
+                    Author = "ystvan",
+                    Body = "Another, non stopping awesome story"
+                },
+                new Post
+                {
+                    Title = "My third blog post",
+                    Posted = DateTime.Now,
+                    Author = "ystvan",
+                    Body = "The last one awesome story"
+                }
+            };
+
             //return new ContentResult {Content = "Blog posts"};
-            return View();
+            return View(posts);
         }
 
         [Route("{year:min(2000)}/{month:range(1,12)}/{key}")]

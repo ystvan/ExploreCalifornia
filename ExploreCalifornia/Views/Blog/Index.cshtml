@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ExploreCalifornia.Models.Post>
 @{
     Layout = "_Layout";
 }
@@ -9,5 +9,10 @@
 <p> There are a few of the latest posts from some of our explorers.</p>
 
 <div class="blog-posts">
-    TODO: blog posts will go here
+    @*TODO: blog posts will go here*@
+    @foreach (var post in Model)
+    {
+         @Html.Partial("_Post", post)
+    }
+    
 </div>
