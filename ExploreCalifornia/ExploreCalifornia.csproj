@@ -106,6 +106,8 @@
     <Content Include="wwwroot\mission.htm" />
     <Content Include="wwwroot\register.htm" />
     <Content Include="wwwroot\resources.htm" />
+    <Content Include="wwwroot\scripts\jquery-3.1.1.min.js" />
+    <Content Include="wwwroot\scripts\site.js" />
     <Content Include="wwwroot\support.htm" />
     <Content Include="wwwroot\tours.htm" />
     <Content Include="wwwroot\tours\tour_detail_backpack.htm" />
