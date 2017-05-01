@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExploreCalifornia
 {
@@ -34,7 +35,7 @@ namespace ExploreCalifornia
         public void ConfigureServices(IServiceCollection services)
         {
             //registering services
-            services.AddTransient<SpecialsDataContext>();
+            //services.AddTransient<SpecialsDataContext>();
             services.AddTransient<FormattingService>();
             
             /*
@@ -59,6 +60,17 @@ namespace ExploreCalifornia
                 EnableDeveloperExceptions = configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions")
             });
 
+            services.AddDbContext<BlogDataContext>(options =>
+            {
+                var connectionString = configuration.GetConnectionString("BlogDataContext");
+                options.UseSqlServer(connectionString);
+            });
+
+            services.AddDbContext<SpecialsDataContext>(options =>
+            {
+                var connectionString = configuration.GetConnectionString("SpecialsDataContext");
+                options.UseSqlServer(connectionString);
+            });
             //registering service
             services.AddMvc();
 
