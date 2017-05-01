@@ -35,7 +35,7 @@ namespace ExploreCalifornia
         public void ConfigureServices(IServiceCollection services)
         {
             //registering services
-            services.AddTransient<SpecialsDataContext>();
+            //services.AddTransient<SpecialsDataContext>();
             services.AddTransient<FormattingService>();
             
             /*
@@ -63,6 +63,12 @@ namespace ExploreCalifornia
             services.AddDbContext<BlogDataContext>(options =>
             {
                 var connectionString = configuration.GetConnectionString("BlogDataContext");
+                options.UseSqlServer(connectionString);
+            });
+
+            services.AddDbContext<SpecialsDataContext>(options =>
+            {
+                var connectionString = configuration.GetConnectionString("SpecialsDataContext");
                 options.UseSqlServer(connectionString);
             });
             //registering service
