@@ -70,5 +70,11 @@ namespace ExploreCalifornia.Controllers
             //passing it as a parameter
             return View(post);
         }
+
+        [Route("create")]
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
