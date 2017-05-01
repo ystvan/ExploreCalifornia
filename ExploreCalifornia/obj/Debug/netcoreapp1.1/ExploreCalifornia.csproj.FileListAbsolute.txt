@@ -6,3 +6,4 @@ E:\ZIBAT\4th sem\ASP.NET Core MVC\big assignment\ExploreCalifornia\ExploreCalifo
 E:\ZIBAT\4th sem\ASP.NET Core MVC\big assignment\ExploreCalifornia\ExploreCalifornia\obj\Debug\netcoreapp1.1\ExploreCalifornia.AssemblyInfo.cs
 E:\ZIBAT\4th sem\ASP.NET Core MVC\big assignment\ExploreCalifornia\ExploreCalifornia\obj\Debug\netcoreapp1.1\ExploreCalifornia.dll
 E:\ZIBAT\4th sem\ASP.NET Core MVC\big assignment\ExploreCalifornia\ExploreCalifornia\obj\Debug\netcoreapp1.1\ExploreCalifornia.pdb
+E:\ZIBAT\4th sem\ASP.NET Core MVC\big assignment\ExploreCalifornia\ExploreCalifornia\obj\Debug\netcoreapp1.1\ExploreCalifornia.csprojResolveAssemblyReference.cache
