@@ -1,18 +1,31 @@
 ﻿@model IEnumerable<ExploreCalifornia.Models.Post>
-@{
-    Layout = "_Layout";
-}
+
 
 
 <h1>Explorer's blog</h1>
 
 <p> There are a few of the latest posts from some of our explorers.</p>
 
-<div class="blog-posts">
-    @*TODO: blog posts will go here*@
-    @foreach (var post in Model)
+<p class="pager">
+    @if (ViewBag.HasPreviousPage)
     {
-         @Html.Partial("_Post", post)
+        <a class="prev" href="@Url.Action("Index", "Blog", new { page = ViewBag.PreviousPage })">
+            &lt; Previous
+        </a>
     }
-    
-</div>
+
+    @if (ViewBag.HasNextPage)
+    {
+        <a class="next" href="@Url.Action("Index", "Blog", new { page = ViewBag.NextPage })">
+            Next &gt;
+        </a>
+    }
+</p>
+<div class="blog-posts">
+        @*TODO: blog posts will go here*@
+        @foreach (var post in Model)
+        {
+             @Html.Partial("_Post", post)
+        }
+
+    </div>
