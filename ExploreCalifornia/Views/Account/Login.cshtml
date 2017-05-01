@@ -6,31 +6,31 @@
 
     <h1>Login</h1>
     <br />
-    <form role="form" asp-action="Login">
-
+    <form role="form" asp-action="Login" asp-antiforgery="true">
+        
         <div asp-validation-summary="All" class="input-validation-error"></div>
 
         <div class="form-group">
             <label asp-for="EmailAddress"></label>
-            <input type="email" asp-for="EmailAddress" class="form-control" />
+            <input type="email" asp-for="EmailAddress" class="form-control"/>
             <span asp-validation-for="EmailAddress" class="field-validation-error"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="Password"></label>
-            <input type="password" asp-for="Password" class="form-control" />
+            <input type="password" asp-for="Password" class="form-control"/>
             <span asp-validation-for="Password" class="field-validation-error"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="ConfirmPassword"></label>
-            <input type="password" asp-for="ConfirmPassword" class="form-control" />
+            <input type="password" asp-for="ConfirmPassword" class="form-control"/>
             <span asp-validation-for="ConfirmPassword" class="field-validation-error"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="RememberMe"></label>
-            <input type="checkbox" asp-for="RememberMe" />
+            <input type="checkbox" asp-for="RememberMe"/>
             <span asp-validation-for="RememberMe" class="field-validation-error"></span>
         </div>
         <div>
